@@ -1,0 +1,170 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Roboto&display=swap");
+/*  sass Template    */
+/* global classes */
+button, button:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+/*  typography classes    */
+.font-mont {
+  font-family: "Montserrat", cursive;
+}
+
+.font-robo {
+  font-family: "Roboto", cursive;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.font-size-12 {
+  font-size: 12px;
+}
+
+.font-size-14 {
+  font-size: 14px;
+}
+
+.font-size-16 {
+  font-size: 16px;
+}
+
+.font-size-20 {
+  font-size: 20px;
+}
+
+/*  Color template  */
+.color-primary {
+  color: #FF6E31;
+}
+
+.color-primary-bg {
+  background: #FF6E31;
+}
+
+.color-second {
+  color: #35466e;
+}
+
+.color-second-bg {
+  background: #35466e;
+}
+
+.color-yellow {
+  color: #fff9e7;
+}
+
+.color-yellow-bg {
+  background: #fff9e7;
+}
+
+.color-borwn {
+  color: #AD8E70;
+}
+
+.color-brown-bg {
+  background: #AD8E70;
+}
+
+/*Banner-ads Templates*/ /*  top sale template   */
+#top-sale .owl-carousel .item .product a {
+  overflow: hidden !important;
+}
+#top-sale .owl-carousel .item .product img {
+  transition: transform 0.5s ease !important;
+}
+#top-sale .owl-carousel .item .product img:hover {
+  transform: scale(1.1) !important;
+}
+#top-sale .owl-carousel .owl-nav button {
+  position: absolute !important;
+  top: 30% !important;
+  outline: none !important;
+}
+#top-sale .owl-carousel .owl-nav button.owl-prev {
+  left: 0 !important;
+}
+#top-sale .owl-carousel .owl-nav button.owl-prev span,
+#top-sale .owl-carousel .owl-nav button.owl-next span {
+  font-size: 50px !important;
+  color: #FF6E31 !important;
+  padding: 0 1rem !important;
+}
+#top-sale .owl-carousel .owl-nav button.owl-prev span {
+  margin-left: -4rem !important;
+}
+#top-sale .owl-carousel .owl-nav button.owl-next {
+  right: 0 !important;
+}
+#top-sale .owl-carousel .owl-nav button.owl-next span {
+  margin-right: -4rem !important;
+}
+
+/*   Special Price Section Template */
+#special-price .grid .grid-item {
+  margin-right: 0.8rem;
+  margin-top: 1.5rem;
+}
+
+/*connexion templates*/
+#connexion .titre {
+  margin: auto;
+  text-align: center;
+  margin: 50px;
+}
+#connexion .form {
+  margin: 0 auto;
+  border: solid 1px red;
+  display: flex;
+  justify-content: center;
+  width: 500px;
+  height: 500px;
+  background-color: rgb(117, 17, 246);
+}
+#connexion .inp1 {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 1200px) {
+  #banner_adds .container img {
+    width: 49% !important;
+  }
+}
+@media (max-width: 1000px) {
+  .owl-carousel .item .card {
+    width: 13rem !important;
+  }
+  #lolo {
+    width: 100% !important;
+    padding: 0 50px 50px 50px !important;
+  }
+}
+@media (max-width: 770px) {
+  .owl-carousel .item .card {
+    width: 10rem !important;
+  }
+  #new-phones .container h4 {
+    font-size: 15px;
+    width: 200px !important;
+    justify-content: start !important;
+  }
+  #special-price .container h4 {
+    font-size: 15px;
+    justify-content: start !important;
+    width: 130px !important;
+  }
+  #top-sale .container h4 {
+    font-size: 15px;
+    justify-content: start !important;
+    width: 130px !important;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

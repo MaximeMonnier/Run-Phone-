@@ -1,0 +1,16 @@
+/* global classes */
+// .clean-transition *{
+//     -webkit-transition:none!important;
+//     -moz-transition:none!important;
+//     -o-transition:none!important;
+//     -ms-transition:none!important;
+//     transition:none!important;
+// }
+button,button:focus {
+    outline: none!important;
+    box-shadow: none!important;
+}
+
+a {
+    text-decoration: none!important;
+}

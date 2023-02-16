@@ -1,0 +1,24 @@
+{
+  "name": "run-phone",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "sass --watch ./sass/style.scss style.css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MaximeMonnier/Run-phone.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MaximeMonnier/Run-phone/issues"
+  },
+  "homepage": "https://github.com/MaximeMonnier/Run-phone#readme",
+  "dependencies": {
+    "sass": "^1.58.1"
+  }
+}

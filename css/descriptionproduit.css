@@ -1,0 +1,59 @@
+a{
+    text-decoration: none;
+    color: black;
+}
+#main{
+    display: flex;
+    height: auto;
+    width: 100%;
+}
+#colone-left{
+    height: auto;
+    width: 70%;
+    background-color: rgb(255,193,7);
+}
+#colone-right{
+    background-color: #b0c2d0;
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+}
+.liens{
+    text-decoration: none;
+    font-size: 20px;
+    margin-top: 50px;
+}
+.image{
+    height: 100px;
+    width: 200px;
+}
+.imagebdd{
+    height: 50px;
+    width: 50px;
+}
+
+/*  css de base pour la presentation de chaque page*/
+
+.displaybdd{
+    color: blue;
+    border: solid 3px black;
+    padding: 10px;
+    border-radius: 3px;
+    margin: 15px;
+    width: 300px;
+}
+.delete-btn{
+    background: red;
+    color: white;
+    margin-bottom: 15px;
+    border: none;
+}
+.modifier-btn{
+    background: rgb(255,193,7);
+    color: white;
+    margin-bottom: 15px;
+    border: none;
+}
+.foot{
+    text-align: center;
+}

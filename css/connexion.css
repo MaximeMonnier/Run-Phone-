@@ -1,0 +1,33 @@
+
+  /*connexion templates*/
+  #connexion .titre {
+    margin: auto;
+    text-align: center;
+    margin: 50px;
+  }
+  #connexion .form {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 350px;
+    background-color: rgb(255,193,7);
+    border-radius: 10px;
+  }
+  .img1{
+    margin-left: 20px;
+    height: 80px;
+  }
+  .inp1{
+    margin:15px;
+  }
+  .lab2{
+    margin-right: 8px;
+  }
+  .btn{
+    margin-top: 20px;
+    margin-left: 100px;
+    background: white;
+  }

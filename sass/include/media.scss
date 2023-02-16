@@ -1,0 +1,45 @@
+
+//media queries
+
+@media (max-width: 1200px) {
+    #banner_adds .container img{
+        width: 49%!important;
+    }
+}
+
+@media (max-width: 1000px) {
+    .owl-carousel .item .card{
+        width: 13rem!important;
+    }
+
+    #lolo {
+        width: 100%!important;
+        padding: 0 50px 50px 50px!important;
+    }
+
+}
+
+@media (max-width: 770px) {
+    .owl-carousel .item .card{
+        width: 10rem!important;
+    }
+
+    #new-phones .container h4 {
+        font-size: 15px;
+        width: 200px!important;
+        justify-content: start!important;
+    }
+
+    #special-price .container h4 {
+        font-size: 15px;
+        justify-content: start!important;
+        width: 130px!important;
+    }
+
+    #top-sale .container h4 {
+        font-size: 15px;
+        justify-content: start!important;
+        width: 130px!important;
+    }
+
+}
