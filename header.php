@@ -55,7 +55,7 @@
             <div class="font-robo font-size-14px">
                 <a href="./admin/connexion.php"
                     class=" liens px-3 border-right border-left text-dark">Login admin</a>
-                <a href="#"
+                <a href="./Templates/espace-user/_inscription.php"
                     class=" liens px-3 border-right border-left text-dark">Login</a>
                 <a href="#"
                     class=" liens px-3 border-right text-dark">Liste de Souhait (0)</a>
