@@ -70,7 +70,8 @@
         <nav class="navbar navbar-expand-lg navbar-dark color-second-bg" style ="height:70px;position:fixed;z-index:5;width:100%;top:30px;">
             <div class="container-fluid">
                 <a class="navbar-brand"
-                    href="index.php">Run Phone</a>
+                    href="index.php">Run Phone <img src="./assets/admin-pic/logo PR simple.png" alt="logo RP" style="height:50px;width:50px"></a>
+                    
                 <button class="navbar-toggler"
                     type="button"
                     data-bs-toggle="collapse"

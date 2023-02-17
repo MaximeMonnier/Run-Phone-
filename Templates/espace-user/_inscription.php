@@ -1,4 +1,6 @@
 <?php
+        //on démarre la session PHP
+        session_start();
 
 //on verifie si tout les champs obligatoire du fom sont bien remplie
 if(!empty($_POST)){
@@ -34,7 +36,22 @@ if(!empty($_POST)){
 
         $query->execute();
 
+        // on récupère l'id du nouvelle utilisateur 
+        $id = $db->lastInsertId();
+
         //on connecte l'utilisateurs
+ 
+        //on stock dans $_SESSION les informations de l'utilisateurs
+        $_SESSION["user"] = [
+            "id" => $id,
+            "nom" => $nom,
+            "prenom" => $prenom,
+            "mail" => $user["user_mail"],
+            "role" => $user["ROLE_USER"]
+        ];
+
+        //on redirige vers la page de profil
+        header("Location: _profil.php");
 
 
 
@@ -96,11 +113,11 @@ if(!empty($_POST)){
 <form method="post">
     <div>
         <label for="last_name">Nom</label>
-        <input type="text" name="first_name" id="first_name">
+        <input type="text" name="last_name" id="last_name">
     </div>
     <div>
         <label for="first_name">Prénom</label>
-        <input type="text" name="last_name" id="last_name">
+        <input type="text" name="first_name" id="first_name">
     </div>
     <div>
         <label for="user_pass">Mot-de-pass</label>

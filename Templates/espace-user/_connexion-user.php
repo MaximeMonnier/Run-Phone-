@@ -1,26 +1,55 @@
 <?php
-
+        //on démarre la session PHP
+        session_start();
 //on verifie si tout les champs obligatoire du fom sont bien remplie
 if(!empty($_POST)){
-    if(isset($_POST['user_mail'], $_POST['user_pass']) && !empty($_POST['user-mail']) && !empty($_POST['user-pass'])
+    if(isset($_POST["user_mail"], $_POST["user_pass"]) && !empty($_POST["user_mail"]) && !empty($_POST["user_pass"])
     ){
         //on vérifie l'email
-        if(!filter_var($_POST['user_mail'], FILTER_VALIDATE_EMAIL)){
-            die("cen'est pas un Email");
+        if(!filter_var($_POST["user_mail"], FILTER_VALIDATE_EMAIL)){
+            die("Email incorrecte");
         }
 
         //on se connecte a la bdd
-        require_once "_DBconnexion.php";
+        require "_DBconnexion.php";
 
-        $sql = "SELECT * FROM `users` WHERE `email` = :email";
+        $sql = "SELECT * FROM `user` WHERE `user_mail` = :email";
 
         $query = $db->prepare($sql);
-        $query->bindValue(":email", $POST['email'], PDO::PARAM_STR);
+        $query->bindValue(":email", $_POST['user_mail'], PDO::PARAM_STR);
         $query->execute();
 
         $user = $query->fetch();
 
-        var_dump($user);die;
+        //pas d'utilisateur
+        if(!$user){
+            die("L'utilisateurs et/ou le mot de passe est incorrect");
+        }
+        // ici user ok on vérifie le mdp
+        if(!password_verify($_POST["user_pass"], $user["user_pass"])){
+            die("L'utilisateurs et/ou le mot de passe est incorrect");
+        }
+
+        //ici l'utilisateurs et le mdp sont ok
+        //on va pourvoir connecter l'utilisateur
+
+
+        //on stock dans $_SESSION les informations de l'utilisateurs
+        $_SESSION["user"] = [
+            "id" => $user["id"],
+            "nom" => $user["last_name"],
+            "prenom" => $user["first_name"],
+            "mail" => $user["user_mail"],
+            "role" => $user["user_role"]
+        ];
+
+        //on redirige vers la page de profil
+        header("Location: _profil.php");
+
+
+        
+    }else{
+        die("mange tes morts");
     }
 }
 ?>
@@ -75,7 +104,7 @@ if(!empty($_POST)){
 <h1>Inscription</h1>
 
 <form method="post">
-<div>
+    <div>
         <label for="user_mail">Email</label>
         <input type="email" name="user_mail" id="user_mail">
     </div>
