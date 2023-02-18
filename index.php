@@ -10,15 +10,13 @@ ob_start();
     include "Templates/_banner-area.php";
     /* include banner area*/ 
 
-
-
     /* include top-sale section*/ 
     include "Templates/_top-sale.php";
     /* include top-sale section*/ 
 
-    /* include banner-ads section*/ 
+    /* include description-wish-list*/ 
     include "Templates/_description-wish-list.php";
-    /* include banner-ads section*/ 
+    /* include description-wish-list*/ 
 
 
     /* include special-price section*/ 

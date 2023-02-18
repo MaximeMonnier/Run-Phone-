@@ -56,6 +56,8 @@ session_start();
 <p>prénom <?= $_SESSION["user"]["prenom"] ?></p>
 <p>Email <?= $_SESSION["user"]["mail"] ?></p>
 
+<h2><a href="./_deconnexion.php">Déconnexion</a></h2>
+
     
 </body>
 </html>

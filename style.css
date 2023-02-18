@@ -10,6 +10,10 @@ a {
   text-decoration: none !important;
 }
 
+a:visited {
+  color: white;
+}
+
 /*  typography classes    */
 .font-mont {
   font-family: "Montserrat", cursive;
@@ -165,6 +169,21 @@ a {
     justify-content: start !important;
     width: 130px !important;
   }
+}
+/*  connexion-user  */
+#inscription {
+  margin-right: 5px;
+  border: 3px solid #FF6E31;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  height: 500px;
+}
+
+#connexion {
+  height: 500px;
+  border: 3px solid #35466e;
+  border-radius: 5px;
+  margin-bottom: 20px;
 }
 
 /*# sourceMappingURL=style.css.map */

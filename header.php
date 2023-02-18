@@ -55,8 +55,8 @@
             <div class="font-robo font-size-14px">
                 <a href="./admin/connexion.php"
                     class=" liens px-3 border-right border-left text-dark">Login admin</a>
-                <a href="./Templates/espace-user/_inscription.php"
-                    class=" liens px-3 border-right border-left text-dark">Login</a>
+                <a href="./Templates/espace-user/_IC-user.php"
+                    class="liens px-3 border-right border-left text-dark">Login</a>
                 <a href="#"
                     class=" liens px-3 border-right text-dark">Liste de Souhait (0)</a>
             </div>
@@ -70,7 +70,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark color-second-bg" style ="height:70px;position:fixed;z-index:5;width:100%;top:30px;">
             <div class="container-fluid">
                 <a class="navbar-brand"
-                    href="index.php">Run Phone <img src="./assets/admin-pic/logo PR simple.png" alt="logo RP" style="height:50px;width:50px"></a>
+                    href="index.php">Run Phone <img src="./assets/admin-pic/logo PR simple.png" alt="logo RP" style="height:50px;width:50px;border-radius:100%;"></a>
                     
                 <button class="navbar-toggler"
                     type="button"
