@@ -1,6 +1,5 @@
 <?php
-    session_start();
-
+session_start(); 
 ?>
 
 <!DOCTYPE html>
@@ -12,7 +11,7 @@
         content="IE=edge">
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0">
-    <title>Run Phone</title>
+    <title>Run Phone Inscription</title>
 
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
@@ -35,7 +34,7 @@
       <!-- Custom CSS file -->
 
       <link rel="stylesheet"
-        href="./style.css">    
+        href="../style.css">    
 
     <!-- Font awesome icons -->
 
@@ -45,30 +44,22 @@
         crossorigin="anonymous"
         referrerpolicy="no-referrer" />
 
+    
         <?php
             //require functions file
-            require 'functions.php';
-        ?>
+            require '../functions.php';
+        ?>    
 
 </head>
-
-<body>
 
     <!-- start #header -->
     <header id="header">
         <div class="d-flex justify-content-end py-1 color-yellow-bg" style="position:absolute;z-index:10;width:100%;">
             <div class="font-robo font-size-14px">
-                <a href="./admin/connexion.php"
-                    class=" liens px-3 border-right border-left text-dark">Login admin</a>
-                    <?php if(!isset($_SESSION["user"])): ?>
-                <a href="./espace-user/_IC-user.php"
-                    class="liens px-3 border-right border-left text-dark">Login</a>
-                    <?php else: ?>
-                        <a href="./espace-user/_profil.php"
-                    class="liens px-3 border-right border-left text-dark"><?= $_SESSION["user"]["prenom"]?> <?=$_SESSION["user"]["nom"]?></a> 
-                    <?php endif; ?>     
-                <a href="#"
+            <a href="#"
                     class=" liens px-3 border-right text-dark">Liste de Souhait (0)</a>
+                <a href="./_deconnexion.php"
+                    class="liens px-3 border-right border-left text-dark">Déconnexion</a>
             </div>
         </div>
 
@@ -80,7 +71,7 @@
         <nav class="navbar navbar-expand-lg navbar-dark color-second-bg" style ="height:70px;position:fixed;z-index:5;width:100%;top:30px;">
             <div class="container-fluid">
                 <a class="navbar-brand"
-                    href="index.php">Run Phone <img src="./assets/admin-pic/logo PR simple.png" alt="logo RP" style="height:50px;width:50px;border-radius:100%;"></a>
+                    href="../index.php">Run Phone <img src="../assets/admin-pic/logo PR simple.png" alt="logo RP" style="height:50px;width:50px;border-radius:100%;"></a>
                     
                 <button class="navbar-toggler"
                     type="button"
@@ -133,6 +124,3 @@
         </nav>
     </header>
     <!-- !Primary Navigation -->
-
-    <!-- start #main-site -->
-    <main id="main-site">

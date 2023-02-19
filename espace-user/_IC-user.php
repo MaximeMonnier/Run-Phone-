@@ -1,6 +1,10 @@
 <?php
 //on démarre la session PHP
 session_start();
+if(isset($_SESSION['user'])){
+    header("Location: ../espace-user/_profil.php");
+    exit();
+}
 
 ?>
 
@@ -36,7 +40,7 @@ session_start();
       <!-- Custom CSS file -->
 
       <link rel="stylesheet"
-        href="../../style.css">    
+        href="../style.css">    
 
     <!-- Font awesome icons -->
 
@@ -51,7 +55,7 @@ session_start();
 <body>
     <main>
         <section id="presentation" class="d-flex justify-content-center my-5">
-            <h1 ><a href="../../index.php" class="text-dark">Run Phone <img src="../../assets/admin-pic/logo PR Simple.png" alt="logo RN" style="height:70px;width:70px;border-radius:100%;"></a></h1>
+            <h1 ><a href="../index.php" class="text-dark">Run Phone <img src="../assets/admin-pic/logo PR Simple.png" alt="logo RN" style="height:70px;width:70px;border-radius:100%;"></a></h1>
         </section>
 
         <section id="main">
@@ -103,7 +107,7 @@ if(isset($_POST["VI"])){
             "nom" => $nom,
             "prenom" => $prenom,
             "mail" => $user["user_mail"],
-            "role" => $user["ROLE_USER"]
+            "date" => $user["user_date"]
         ];
 
         //on redirige vers la page de profil
@@ -118,8 +122,8 @@ if(isset($_POST["VI"])){
 ?>
         <!-- Section inscription -->
                     <div class="col">
-                    <section id="inscription" class="py-5 px-5">
-                    <h1 class="font-mont color-second my-4">Inscription</h1>
+                        <section id="inscription" class="py-5 px-5">
+                        <h1 class="font-mont color-second my-4">Inscription</h1>
                         <form method="post">
                             <div class="d-flex flex-column my-2 fw-bolder font-mont color-primary">
                                 <label for="last_name">Nom</label>
@@ -139,7 +143,7 @@ if(isset($_POST["VI"])){
                             </div>
                             <button type="submit" name="VI" class="btn color-primary-bg mt-3 text-dark">Je m'inscris</button>
                         </form>
-                    </section>
+                        </section>
                     </div>
         <!-- ! fin Section inscription -->
 
@@ -183,7 +187,7 @@ if(isset($_POST["VC"])){
             "nom" => $user["last_name"],
             "prenom" => $user["first_name"],
             "mail" => $user["user_mail"],
-            "role" => $user["user_role"]
+            "date" => $user["user_date"]
         ];
 
         //on redirige vers la page de profil
