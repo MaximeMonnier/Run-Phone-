@@ -61,10 +61,10 @@ if(isset($_SESSION['user'])){
         <section id="main">
             <div class="container-fluid d-flex justify-content-center py-5">
                 <div class="row">
-<?php
-//on verifie si tout les champs obligatoire du fom sont bien remplie
-if(isset($_POST["VI"])){
-    if(isset($_POST["last_name"], $_POST["first_name"], $_POST["user_pass"], $_POST["user_mail"]) && !empty($_POST["last_name"]) && !empty($_POST["first_name"]) && !empty($_POST["user_pass"]) && !empty($_POST["user_mail"])){
+    <?php
+    //on verifie si tout les champs obligatoire du fom sont bien remplie
+    if(isset($_POST["VI"])){
+        if(isset($_POST["last_name"], $_POST["first_name"], $_POST["user_pass"], $_POST["user_mail"]) && !empty($_POST["last_name"]) && !empty($_POST["first_name"]) && !empty($_POST["user_pass"]) && !empty($_POST["user_mail"])){
 
         //on recupère les données en les protégents
         $nom = strip_tags($_POST["last_name"]);
@@ -83,7 +83,7 @@ if(isset($_POST["VI"])){
         // exit();
         // $database = dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'database/DBControler.php';
         // require "$database";
-        require_once "_DBconnexion.php";
+        require_once "./database/_DBconnexion.php";
 
         $sql = "INSERT INTO `user`(`last_name`, `first_name`, `user_mail`, `user_pass`, `user_role`, `user_date`) VALUES (:nom, :prenom, :email, '$pass', :user_role, NOW())";
 
@@ -116,7 +116,7 @@ if(isset($_POST["VI"])){
 
 
     }else{
-        die("Suce mes boule");
+       die ("Le formulaire n'est pas complet");
     }
 }
 ?>
@@ -147,77 +147,77 @@ if(isset($_POST["VI"])){
                     </div>
         <!-- ! fin Section inscription -->
 
-<?php
-//on verifie si tout les champs obligatoire du form sont bien remplie
-if(isset($_POST["VC"])){
-    if(isset($_POST["mail"], $_POST["pass"]) && !empty($_POST["mail"]) && !empty($_POST["pass"])
-    ){
-        //on vérifie l'email
-        if(!filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)){
-            die("Email incorrecte");
-        }
+                <?php
+                //on verifie si tout les champs obligatoire du form sont bien remplie
+                if(isset($_POST["VC"])){
+                    if(isset($_POST["mail"], $_POST["pass"]) && !empty($_POST["mail"]) && !empty($_POST["pass"])
+                    ){
+                        //on vérifie l'email
+                        if(!filter_var($_POST["mail"], FILTER_VALIDATE_EMAIL)){
+                            die("Email incorrecte");
+                        }
 
-        //on se connecte a la bdd
-        require "_DBconnexion.php";
+                        //on se connecte a la bdd
+                        require "_DBconnexion.php";
 
-        $sql = "SELECT * FROM `user` WHERE `user_mail` = :email";
+                        $sql = "SELECT * FROM `user` WHERE `user_mail` = :email";
 
-        $query = $db->prepare($sql);
-        $query->bindValue(":email", $_POST['mail'], PDO::PARAM_STR);
-        $query->execute();
+                        $query = $db->prepare($sql);
+                        $query->bindValue(":email", $_POST['mail'], PDO::PARAM_STR);
+                        $query->execute();
 
-        $user = $query->fetch();
+                        $user = $query->fetch();
 
-        //pas d'utilisateur
-        if(!$user){
-            die("L'utilisateurs et/ou le mot de passe est incorrect");
-        }
-        // ici user ok on vérifie le mdp
-        if(!password_verify($_POST["pass"], $user["user_pass"])){
-            die("L'utilisateurs et/ou le mot de passe est incorrect");
-        }
+                        //pas d'utilisateur
+                        if(!$user){
+                            die("L'utilisateurs et/ou le mot de passe est incorrect");
+                        }
+                        // ici user ok on vérifie le mdp
+                        if(!password_verify($_POST["pass"], $user["user_pass"])){
+                            die("L'utilisateurs et/ou le mot de passe est incorrect");
+                        }
 
-        //ici l'utilisateurs et le mdp sont ok
-        //on va pourvoir connecter l'utilisateur
-
-
-        //on stock dans $_SESSION les informations de l'utilisateurs
-        $_SESSION["user"] = [
-            "id" => $user["id"],
-            "nom" => $user["last_name"],
-            "prenom" => $user["first_name"],
-            "mail" => $user["user_mail"],
-            "date" => $user["user_date"]
-        ];
-
-        //on redirige vers la page de profil
-        header("Location: _profil.php");
+                        //ici l'utilisateurs et le mdp sont ok
+                        //on va pourvoir connecter l'utilisateur
 
 
-        
-    }else{
-        die("mange tes morts");
-    }
-}
-?>
+                        //on stock dans $_SESSION les informations de l'utilisateurs
+                        $_SESSION["user"] = [
+                            "id" => $user["id"],
+                            "nom" => $user["last_name"],
+                            "prenom" => $user["first_name"],
+                            "mail" => $user["user_mail"],
+                            "date" => $user["user_date"]
+                        ];
+
+                        //on redirige vers la page de profil
+                        header("Location: _profil.php");
+
+
+                        
+                    }else{
+                        die("mange tes morts");
+                    }
+                }
+                ?>
         <!-- Section connexion -->
                     <div class="col">
-                    <section id="connexion" class="py-5 px-5">
-                    <h1 class="font-mont color-primary my-4">Connexion</h1>
-                        <form method="post">
-                            <div class="d-flex flex-column my-2 fw-bolder font-mont color-second">
-                                <label for="mail">Email</label>
-                                <input type="email" name="mail" id="mail" autocomplete="off">
-                            </div>
-                            <div class="d-flex flex-column my-2 fw-bolder font-mont color-second">
-                                <label for="pass">Mot-de-pass</label>
-                                <input type="password" name="pass" id="pass" autocomplete="off">
-                            </div>
-                            <button type="submit" name="VC"  class="btn color-second-bg mt-3 color-primary">Me connecter</button>
-                        </form>
-                    </section>
+                        <section id="connexion" class="py-5 px-5">
+                        <h1 class="font-mont color-primary my-4">Connexion</h1>
+                            <form method="post">
+                                <div class="d-flex flex-column my-2 fw-bolder font-mont color-second">
+                                    <label for="mail">Email</label>
+                                    <input type="email" name="mail" id="mail" autocomplete="off">
+                                </div>
+                                <div class="d-flex flex-column my-2 fw-bolder font-mont color-second">
+                                    <label for="pass">Mot-de-pass</label>
+                                    <input type="password" name="pass" id="pass" autocomplete="off">
+                                </div>
+                                <button type="submit" name="VC"  class="btn color-second-bg mt-3 color-primary">Me connecter</button>
+                            </form>
+                        </section>
                     </div>
-        <!-- ! fin Section connexion -->
+            <!-- ! fin Section connexion -->
                 </div>
             </div>
         </section>

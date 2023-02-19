@@ -14,6 +14,14 @@ a:visited {
   color: white;
 }
 
+#cart {
+  padding-top: 120px !important;
+}
+
+#product {
+  padding-top: 120px !important;
+}
+
 /*  typography classes    */
 .font-mont {
   font-family: "Montserrat", cursive;
@@ -116,26 +124,6 @@ a:visited {
   margin-top: 1.5rem;
 }
 
-/*connexion templates*/
-#connexion .titre {
-  margin: auto;
-  text-align: center;
-  margin: 50px;
-}
-#connexion .form {
-  margin: 0 auto;
-  border: solid 1px red;
-  display: flex;
-  justify-content: center;
-  width: 500px;
-  height: 500px;
-  background-color: rgb(117, 17, 246);
-}
-#connexion .inp1 {
-  display: flex;
-  align-items: center;
-}
-
 @media (max-width: 1200px) {
   #banner_adds .container img {
     width: 49% !important;
@@ -172,7 +160,6 @@ a:visited {
 }
 /*  connexion-user  */
 #inscription {
-  margin-right: 5px;
   border: 3px solid #FF6E31;
   border-radius: 5px;
   margin-bottom: 20px;
@@ -186,7 +173,37 @@ a:visited {
   margin-bottom: 20px;
 }
 
-/*  connexion-user  */
+/*  profil-user  */
+#info {
+  padding-top: 110px !important;
+}
+
+#affichage {
+  padding-top: 110px !important;
+}
+
+#affichage-admin {
+  padding-top: 140px !important;
+}
+
+#list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+}
+#list a {
+  height: 50px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  background-color: #fff9e7;
+}
+#list a:hover {
+  background-color: #FF6E31;
+}
+
+/*  admin espace  */
 #info {
   padding-top: 110px !important;
 }
@@ -209,7 +226,7 @@ a:visited {
   background-color: #fff9e7;
 }
 #list a:hover {
-  background-color: #FF6E31;
+  background-color: white;
 }
 
 /*# sourceMappingURL=style.css.map */

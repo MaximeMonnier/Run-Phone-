@@ -58,11 +58,11 @@
     <header id="header">
         <div class="d-flex justify-content-end py-1 color-yellow-bg" style="position:absolute;z-index:10;width:100%;">
             <div class="font-robo font-size-14px">
-                <a href="./admin/connexion.php"
-                    class=" liens px-3 border-right border-left text-dark">Login admin</a>
+                <!-- <a href="./admin/connexion.php"
+                    class=" liens px-3 border-right border-left text-dark">Login admin</a> -->
                     <?php if(!isset($_SESSION["user"])): ?>
                 <a href="./espace-user/_IC-user.php"
-                    class="liens px-3 border-right border-left text-dark">Login</a>
+                    class="liens px-3 border-right border-left text-dark">Connexion/Inscription</a>
                     <?php else: ?>
                         <a href="./espace-user/_profil.php"
                     class="liens px-3 border-right border-left text-dark"><?= $_SESSION["user"]["prenom"]?> <?=$_SESSION["user"]["nom"]?></a> 

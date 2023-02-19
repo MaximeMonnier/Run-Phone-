@@ -8,13 +8,10 @@
         <section id="product" class="py-3">
                 <div class="container">
                     <div class="row">
-                        <div class="col-sm-6">
+                        <div class="col">
                             <img src="<?php echo $item['item_image'] ?? "./assets/products/1.png"; ?>" alt="product" class="img-fluid">
                             <div class="row pt-4 font-size-16 font-mont">
-                                <div class="col">
-                                    <button type="submit" class="btn btn-danger form-control">Proceder au Paiement </button>
-                                </div>
-                                <div class="col">
+                                <div style="width: 45%;margin:auto;">
                                 <?php 
                                     if(in_array($item['item_id'], $Cart->getCartId($product->getData('cart')) ?? [])){
                                         echo '<button type="submit" disabled class="btn btn-success font-size-16">Dans le panier</button>';
