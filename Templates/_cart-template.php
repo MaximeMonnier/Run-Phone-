@@ -5,7 +5,7 @@
         }
 
          // save for later
-         if (isset($_POST['wishlist-submit'])){
+         if (isset($_POST["wishlist-submit"])){
             $Cart->saveForLater($_POST['item_id']);
         }
 

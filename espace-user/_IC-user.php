@@ -83,7 +83,7 @@ if(isset($_SESSION['user'])){
         // exit();
         // $database = dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'database/DBControler.php';
         // require "$database";
-        require_once "./database/_DBconnexion.php";
+        require "../database/_DBconnexion.php";
 
         $sql = "INSERT INTO `user`(`last_name`, `first_name`, `user_mail`, `user_pass`, `user_role`, `user_date`) VALUES (:nom, :prenom, :email, '$pass', :user_role, NOW())";
 
@@ -158,7 +158,7 @@ if(isset($_SESSION['user'])){
                         }
 
                         //on se connecte a la bdd
-                        require "_DBconnexion.php";
+                        require "../database/_DBconnexion.php";
 
                         $sql = "SELECT * FROM `user` WHERE `user_mail` = :email";
 
@@ -196,7 +196,7 @@ if(isset($_SESSION['user'])){
 
                         
                     }else{
-                        die("mange tes morts");
+                        die("Le formulaires n'est pas complet");
                     }
                 }
                 ?>

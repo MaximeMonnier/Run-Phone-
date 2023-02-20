@@ -158,6 +158,22 @@ a:visited {
     width: 130px !important;
   }
 }
+@media (max-width: 770px) {
+  #prod {
+    width: 100px !important;
+  }
+  #prod h6 {
+    font-size: 10px !important;
+  }
+  #prod .price {
+    font-size: 12px !important;
+  }
+  #prod button {
+    font-size: 10px !important;
+    padding: 0;
+    padding: 5px;
+  }
+}
 /*  connexion-user  */
 #inscription {
   border: 3px solid #FF6E31;

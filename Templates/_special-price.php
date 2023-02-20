@@ -33,7 +33,7 @@
                 <div class="grid">
                     <?php array_map(function($item) use($in_cart){ ?>
                     <div class="grid-item border <?php echo $item['item_brand'] ?? "Brand"; ?>">
-                        <div class="item py-2" style="width:200px">
+                        <div id="prod" class="item py-2" style="width:200px">
                             <div class="product font-mont">
                                 <a href="<?php printf('%s?item_id=%s','product.php', $item['item_id']); ?>"><img src="<?php echo $item['item_image'] ?? "./assets/products/13.png";?>"
                                         alt="product13"

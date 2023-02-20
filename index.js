@@ -165,7 +165,7 @@ $(document).ready(function(){
                     }
         
                
-                }}); //closing ajax reques
+                }}); //closing ajax request
 
     });
 
