@@ -145,7 +145,7 @@ $(document).ready(function(){
         let $input = $(`.qty_input[data-id='${$(this).data("id")}']`);
         let $price = $(`.product_price[data-id='${$(this).data("id")}']`);
 
-                //change product price using ajax
+                //change product price using ajax .
 
                 $.ajax({url : "Templates/ajax.php", type:'post',data:{itemid: $(this).data("id")},success:function(result){
                     let obj = JSON.parse(result);
