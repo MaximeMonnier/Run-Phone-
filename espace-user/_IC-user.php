@@ -79,10 +79,6 @@ if(isset($_SESSION['user'])){
 
         //on enregistre en bdd
 
-        // var_dump(dirname(dirname(__DIR__)));
-        // exit();
-        // $database = dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'database/DBControler.php';
-        // require "$database";
         require "../database/_DBconnexion.php";
 
         $sql = "INSERT INTO `user`(`last_name`, `first_name`, `user_mail`, `user_pass`, `user_role`, `user_date`) VALUES (:nom, :prenom, :email, '$pass', :user_role, NOW())";

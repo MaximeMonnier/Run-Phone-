@@ -25,7 +25,6 @@ public function __destruct()
 {
     $this->closeConnection();
 }
-
 //for msqli closing connection
 protected function closeConnection()
 {

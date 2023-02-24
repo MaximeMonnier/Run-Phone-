@@ -1,9 +1,11 @@
 <?php
+//étape n°= 1 j'empêche l'acces a mes fichiers sans que le super global ($_SESSION) soit déclarer et le redirige avec la page de connexion, 
+  if(!isset($_SESSION['mdp'])){
+    header("Location: connexion.php");
+    exit();
+} 
+// étape n°= 2 avec la fonction 'include' j'inclue le header de mon espace admin ainsi que la connexion a ma base de données
 include "./header-admin.php";
-$bdd = new PDO ('mysql:host=localhost;dbname=shopee;','root','');
-if(!$_SESSION['mdp']){
-    header('Location: connexion.php');
-}
 ?>
 <body>
     <main>
@@ -16,7 +18,6 @@ if(!$_SESSION['mdp']){
                             <a href="blog.php" class="my-3"><p class="pt-3 ps-3 color-primary fs-6 font-robo text-dark">Afficher les article de blogs</p></a>
                         </div>  
                     </div>
-
                     <?php
                             if(isset($_POST['envoie'])){
                                 if(!empty($_POST['marque']) AND !empty($_POST['titre']) AND !empty($_POST['prix']) AND !empty($_POST['image']) AND !empty($_POST['date'])){

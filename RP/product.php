@@ -1,9 +1,9 @@
 <?php
 include "./header-admin.php";
-$bdd = new PDO ('mysql:host=localhost;dbname=shopee;','root','');
-if(!$_SESSION['mdp']){
-    header('Location: connexion.php');
-}
+// if(!isset($_SESSION['mdp'])){
+//     header("Location: connexion.php");
+//     exit();
+// } 
 ?>
 
 <body>

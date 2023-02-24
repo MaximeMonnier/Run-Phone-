@@ -1,0 +1,15 @@
+{
+    "name": "abili/run-phone",
+    "autoload": {
+        "psr-4": {
+            "Abili\\RunPhone\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Maxime Monnier",
+            "email": "maximemonnier39@gmail.com"
+        }
+    ],
+    "require": {}
+}

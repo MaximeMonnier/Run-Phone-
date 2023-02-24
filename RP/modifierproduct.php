@@ -1,6 +1,5 @@
 <?php
 include "./header-admin.php";
-$bdd = new PDO ('mysql:host=localhost;dbname=shopee;','root','');
 if(isset($_GET['id']) AND !empty($_GET['id'])){
     $getid = $_GET['id'];
 
@@ -23,7 +22,6 @@ if(isset($_GET['id']) AND !empty($_GET['id'])){
     
             $updateproduct = $bdd->prepare('UPDATE product SET item_brand = ? , item_name = ? , item_price = ? , item_image = ? , item_register = ? WHERE item_id = ?');
             $updateproduct->execute(array($marque_saisie,$titre_saisie,$prix_saisie,$image_saisie,$date_saisie,$getid));
-
             header('Location: product.php');
         }
 
@@ -49,6 +47,7 @@ if(isset($_GET['id']) AND !empty($_GET['id'])){
                     <div id="affichage-admin" class="col-10">
                         <div class="row">
                                 <div class="col-5">
+                                    <!-- formulaire de modification -->
                                     <section id="inscription" class="px-5">
                                     <h1 class="font-mont color-second my-4">Modifier un produits</h1>
                                         <form method="post">
@@ -76,6 +75,8 @@ if(isset($_GET['id']) AND !empty($_GET['id'])){
                                         </form>
                                     </section>
                                 </div>
+                                <!-- fin du formulaire de modification -->
+                                <!-- affichage produit a mofidier -->
                                 <div class="col-5">
                                 <div class="card" style="width: 28rem;">
                                         <div class="card-body">

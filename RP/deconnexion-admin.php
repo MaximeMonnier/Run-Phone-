@@ -4,5 +4,4 @@ session_start();
 unset($_SESSION["mdp"]);
 
 header("Location: ./connexion.php");
-
 ?>

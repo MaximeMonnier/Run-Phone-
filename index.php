@@ -3,8 +3,6 @@ ob_start();
     //include header php file 
     include "header.php";
 ?>
-
-
 <?php
     /* include banner area*/ 
     include "Templates/_banner-area.php";
@@ -40,8 +38,6 @@ ob_start();
     include "Templates/_latest-blog.php";
     /* include latest-blog section*/ 
 ?>
-
-
 <?php
     //include footer php file 
     include "footer.php";

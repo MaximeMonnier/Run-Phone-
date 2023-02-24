@@ -54,7 +54,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`item_id`, `item_brand`, `item_name`, `item_price`, `item_image`, `item_register`) VALUES
-(1, 'Samsung', 'Samsung Galaxy 10', 152.00, './assets/products/1.png', NOW()), -- NOW()
+(1, 'Samsung', 'Samsung Galaxy 10', 152.00, './assets/products/1.png', NOW()),
 (2, 'Redmi', 'Redmi Note 7', 122.00, './assets/products/2.png', NOW() ),
 (3, 'Redmi', 'Redmi Note 6', 122.00, './assets/products/3.png', NOW() ),
 (4, 'Redmi', 'Redmi Note 5', 122.00, './assets/products/4.png', NOW() ),

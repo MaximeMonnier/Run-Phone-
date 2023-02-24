@@ -64,9 +64,9 @@ if(!$_SESSION['mdp']){
             <section id="head">
                 <nav class="navbar color-primary-bg border-bottom border-dark" style="position:absolute;z-index:10;width:100%;">
                         <div class="container-fluid">
-                        <a href="home.php" class="navbar-brand"><img src="./assets/admin-pic/logo_1900X1350.png" class="image-fluid" style="height: 100px;width:200px;"></a>
+                        <a href="./home.php" class="navbar-brand"><img src="./assets/admin-pic/logo_1900X1350.png" class="image-fluid" style="height: 100px;width:200px;"></a>
                         <div class="d-flex">
-                        <button class="btn fs-4"><a href="connexion.php">Deconnexion</a></button>
+                        <button class="btn fs-4"><a href="./deconnexion-admin.php">Deconnexion</a></button>
                         </div>
                     </div>
                 </nav>
