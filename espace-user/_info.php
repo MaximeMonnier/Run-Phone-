@@ -1,8 +1,4 @@
-<?php
-  if(!isset($_SESSION['user'])){
-    header("Location: _IC-user.php");
-    exit();
-}    
+<?php   
     include "./_header-user.php";
     include "./_list-profil-user.php";
 ?>

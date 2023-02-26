@@ -13,7 +13,7 @@ if(isset($_POST['valider'])){
         $mdp_saisie = htmlspecialchars($_POST['mdp']);
         // étape n°= 6 je compare mes les donnéess saisie dans mes 'champs inputs' et les données de mes variable de connexion, je lui demande de comparer les données, si elle sont identique tu accorde laccès a la page 'home.php' de mon espace admin et exécute l'étape n°= 7 sinon refus on renvoie 'else',
         if($name_par_defaut == $name_saisie AND $mdp_par_defaut == $mdp_saisie){
-            // étape n°= 7 on instancie les paramètres de la fonctions.
+            // étape n°= 7 j'accorde l'acces au pages de l'esapce adimis avec la session et redirige l'admin sur la page home.
             $_SESSION['mdp'] = $mdp_saisie;
             header("Location: ./home.php");
         } else{

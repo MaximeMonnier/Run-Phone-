@@ -16,23 +16,17 @@ ob_start();
     include "Templates/_description-wish-list.php";
     /* include description-wish-list*/ 
 
-
     /* include special-price section*/ 
     include "Templates/_special-price.php";
     /* include special-price section*/ 
-
-
 
     /* include banner-ads section*/ 
     include "Templates/_banner-ads.php";
     /* include banner-ads section*/ 
 
-
-
     /* include new-phones section*/ 
     include "Templates/_new-phones.php";
     /* include nes-phones section*/ 
-
 
     /* include latest-blog section*/ 
     include "Templates/_latest-blog.php";

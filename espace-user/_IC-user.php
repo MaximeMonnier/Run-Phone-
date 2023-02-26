@@ -62,7 +62,7 @@ if(isset($_SESSION['user'])){
             <div class="container-fluid d-flex justify-content-center py-5">
                 <div class="row">
     <?php
-    //on verifie si tout les champs obligatoire du fom sont bien remplie
+    //on verifie si tout les champs obligatoire du form sont bien remplie
     if(isset($_POST["VI"])){
         if(isset($_POST["last_name"], $_POST["first_name"], $_POST["user_pass"], $_POST["user_mail"]) && !empty($_POST["last_name"]) && !empty($_POST["first_name"]) && !empty($_POST["user_pass"]) && !empty($_POST["user_mail"])){
 
@@ -70,7 +70,6 @@ if(isset($_SESSION['user'])){
         $nom = strip_tags($_POST["last_name"]);
         $prenom = strip_tags($_POST["first_name"]);
         $mail = (!filter_var($_POST["user_mail"], FILTER_VALIDATE_EMAIL));
-
         if ($mail) {
             die("L'adresse email est incorecte ");
         }
@@ -78,10 +77,9 @@ if(isset($_SESSION['user'])){
         $pass = password_hash($_POST["user_pass"], PASSWORD_ARGON2ID);
 
         //on enregistre en bdd
-
         require "../database/_DBconnexion.php";
 
-        $sql = "INSERT INTO `user`(`last_name`, `first_name`, `user_mail`, `user_pass`, `user_role`, `user_date`) VALUES (:nom, :prenom, :email, '$pass', :user_role, NOW())";
+        $sql = "INSERT INTO `user`(`last_name`, `first_name`, `user_mail`, `user_pass`, `user_role`, `user_date`) VALUES (:nom, :prenom, :email, '$pass', :user_role, CURRENT_TIMESTAMP())";
 
         $query = $db->prepare($sql);
 
@@ -94,6 +92,7 @@ if(isset($_SESSION['user'])){
 
         // on récupère l'id du nouvelle utilisateur 
         $id = $db->lastInsertId();
+        $Date = date('Y-m-d H:i:s');
 
         //on connecte l'utilisateurs
  
@@ -102,15 +101,11 @@ if(isset($_SESSION['user'])){
             "id" => $id,
             "nom" => $nom,
             "prenom" => $prenom,
-            "mail" => $user["user_mail"],
-            "date" => $user["user_date"]
+            "mail" => $_POST['user_mail'],
+            "date" => $Date
         ];
-
         //on redirige vers la page de profil
         header("Location: _profil.php");
-
-
-
     }else{
        die ("Le formulaire n'est pas complet");
     }
@@ -164,6 +159,7 @@ if(isset($_SESSION['user'])){
 
                         $user = $query->fetch();
 
+
                         //pas d'utilisateur
                         if(!$user){
                             die("L'utilisateurs et/ou le mot de passe est incorrect");
@@ -188,6 +184,7 @@ if(isset($_SESSION['user'])){
 
                         //on redirige vers la page de profil
                         header("Location: _profil.php");
+                        var_dump($user);
 
 
                         
