@@ -32,19 +32,19 @@ if(isset($_POST['valider'])){
        //on stock dans $_SESSION les informations de l'utilisateurs si son identifiant est correct
         if($admin && password_verify($pass, $admin["user_pass"])){
          // Vérification de l'identifiant unique de l'utilisateur
-        if($admin['id'] == 70){ 
-        $_SESSION["admin"] = [
-            "nom" => $admin["last_name"],
-            "prenom" => $admin["first_name"],
-            "mail" => $admin["user_mail"]
-        ];
-        //on redirige vers la page de profil
-        header("Location: home.php");
+            if($admin['user_role'] == "ROLE_ADMIN"){ 
+                $_SESSION["admin"] = [
+                    "nom" => $admin["last_name"],
+                    "prenom" => $admin["first_name"],
+                    "mail" => $admin["user_mail"]
+                ];
+                //on redirige vers la page de profil
+                header("Location: home.php");
+            } else {
+                echo "Vous n'êtes pas autorisé à accéder à cette page.";
+            }
         } else {
-         echo "Vous n'êtes pas autorisé à accéder à cette page.";
-        }
-        } else {
-        echo "L'utilisateurs et/ou le mot de passe est incorrect";
+            echo "L'utilisateurs et/ou le mot de passe est incorrect";
         }
 
     }else{

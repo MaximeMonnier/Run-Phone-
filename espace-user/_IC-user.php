@@ -87,7 +87,7 @@ if(isset($_SESSION['user'])){
                             $query->bindvalue(":nom", $nom, PDO::PARAM_STR); 
                             $query->bindvalue(":prenom", $prenom, PDO::PARAM_STR); 
                             $query->bindvalue(":email", $_POST['user_mail'], PDO::PARAM_STR); 
-                            $query->bindvalue(":user_role", '[\"ROLE_USER"\]', PDO::PARAM_STR); 
+                            $query->bindvalue(":user_role", 'ROLE_USER', PDO::PARAM_STR); 
 
                             $query->execute();
 

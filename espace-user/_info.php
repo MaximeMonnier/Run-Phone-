@@ -5,7 +5,7 @@
 
 
                     <div id="affichage" class="col-10 color-yellow-bg">
-                    <div class="card mt-3" style="width: 50%;height:37%;">
+                    <div class="card mt-3" style="width: 50%;">
                         <div class="card-body">
                         <h3 class="card-title color-second font-robo">Bonjour bienvenue dans votre espace utilisateur</h3>
                         <br>

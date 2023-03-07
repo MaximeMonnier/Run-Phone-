@@ -6,16 +6,16 @@ class Cart
 {
     public $db = null;
 
-    public function __construct(DBController $db) 
+    public function __construct(PDO $db) 
     {
-        if(!isset($db->con)) return null;
+        if(!isset($db)) return null;
         $this->db=$db;
     }
 
     //insert into cart table
 
     public function insertintoCart($params =null, $table ="cart"){
-        if($this->db->con != null){
+        if($this->db != null){
             if($params != null){
                 //insert into cart (user_id) values (0)
                 // get table columns
@@ -25,9 +25,10 @@ class Cart
                 //create sql query
                 $query_string = sprintf("INSERT INTO %s(%s) VALUES (%s)", $table,$columns,$values);
 
-                // execute query
-                $result = $this->db->con->query($query_string);
-                return $result;
+                // prepare and execute query
+                $stmt = $this->db->prepare($query_string);
+                $stmt->execute();
+                return $stmt->rowCount();
             }
         }
     }
@@ -52,11 +53,15 @@ class Cart
     //  delete cart item using cart item id
     public function deleteCart($item_id = null, $table ='cart'){
         if($item_id !=null){
-            $result = $this->db->con->query("DELETE FROM {$table} WHERE item_id = {$item_id}");
-            if($result){
+            $query_string = "DELETE FROM {$table} WHERE item_id = :item_id";
+            // prepare and execute query
+            $stmt = $this->db->prepare($query_string);
+            $stmt->bindValue(':item_id', $item_id, PDO::PARAM_INT);
+            $stmt->execute();
+            if($stmt->rowCount() > 0){
                 header("Location:".$_SERVER['PHP_SELF']);
             }
-            return $result;
+            return $stmt->rowCount();
         }
     }
 
@@ -84,11 +89,13 @@ class Cart
       // Save for later
       public function saveForLater($item_id = null, $saveTable = "wishlist", $fromTable = "cart"){
         if ($item_id != null){
-            $query = "INSERT INTO {$saveTable} SELECT * FROM {$fromTable} WHERE item_id={$item_id};";
-            $query .= "DELETE FROM {$fromTable} WHERE item_id={$item_id};";
+            $query = "INSERT INTO {$saveTable} SELECT * FROM {$fromTable} WHERE item_id=:item_id;";
+            $query .= "DELETE FROM {$fromTable} WHERE item_id=:item_id;";
 
-            // execute multiple query
-            $result = $this->db->con->multi_query($query);
+            // prepare and execute multiple queries
+            $stmt = $this->db->prepare($query);
+            $stmt->bindValue(':item_id', $item_id, PDO::PARAM_INT);
+            $result = $stmt->execute();
 
             if($result){
                 header("Location : ./cart.php");

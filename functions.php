@@ -1,6 +1,6 @@
 <?php
  //require MySQL Connection
- require 'database/DBControler.php';
+ require 'database/_DBconnexion.php';
 
   //require Product Class
   require 'database/Product.php';
@@ -10,7 +10,7 @@
 
 
  //DBController object
- $db = new DBController();
+ $db = new PDO($dsn, DBuser, DBpassword);
 
  //product object
  $product = new Product($db);

@@ -1,6 +1,5 @@
 <?php
 session_start();
-require "../database/_DBconnexion.php"; 
 if(!isset($_SESSION['user'])){
     header("Location: ../espace-user/_IC-user.php");
     exit();

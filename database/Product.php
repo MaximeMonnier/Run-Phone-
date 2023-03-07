@@ -3,17 +3,17 @@
 class Product
 {
     public $db = null;
-    public function __construct(DBController $db)
+    public function __construct(PDO $db)
     {
-        if(!isset($db->con)) return null;
+        if(!$db) return null;
         $this->db = $db;
     }
     //fetch product data using getdata methode
     public function getData($table ='product'){
-        $result = $this->db->con->query(query:"SELECT*FROM {$table}");
+        $result = $this->db->query("SELECT*FROM {$table}");
         $resultArray = array();
         //fetch product data one by one
-        while ($item = mysqli_fetch_array($result,MYSQLI_ASSOC)){
+        while ($item = $result->fetch(PDO::FETCH_ASSOC)){
             $resultArray[] = $item;
         }
         return $resultArray;
@@ -22,12 +22,11 @@ class Product
      // get product using item id
      public function getProduct($item_id = null, $table= 'product'){
         if (isset($item_id)){
-            $result = $this->db->con->query("SELECT * FROM {$table} WHERE item_id={$item_id}");
-
+            $result = $this->db->query("SELECT * FROM {$table} WHERE item_id={$item_id}");
             $resultArray = array();
 
             // fetch product data one by one
-            while ($item = mysqli_fetch_array($result, MYSQLI_ASSOC)){
+            while ($item = $result->fetch(PDO::FETCH_ASSOC)){
                 $resultArray[] = $item;
             }
 
