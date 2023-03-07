@@ -6,12 +6,9 @@ if(isset($_SESSION['user'])){
     header("Location: ../espace-user/_profil.php");
     exit();
 }
-
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible"
@@ -52,34 +49,29 @@ if(isset($_SESSION['user'])){
         referrerpolicy="no-referrer" />
 
 </head>
-
 <body>
     <main>
         <section id="presentation" class="d-flex justify-content-center my-5">
             <h1 ><a href="../index.php" class="text-dark">Run Phone <img src="../assets/admin-pic/logo PR Simple.png" alt="logo RN" style="height:70px;width:70px;border-radius:100%;"></a></h1>
         </section>
-
         <section id="main">
             <div class="container-fluid d-flex justify-content-center py-5">
                 <div class="row">
-                 <?php
+                    <?php
                         //on verifie si tout les champs obligatoire du form sont bien remplie
                         if(isset($_POST["VI"])){
                             if(isset($_POST["last_name"], $_POST["first_name"], $_POST["user_pass"], $_POST["user_mail"]) && !empty($_POST["last_name"]) && !empty($_POST["first_name"]) && !empty($_POST["user_pass"]) && !empty($_POST["user_mail"])){
-
                             //on recupère les données en les protégents
                             $nom = strip_tags($_POST["last_name"]);
                             $prenom = strip_tags($_POST["first_name"]);
                             $email = htmlspecialchars(filter_var($_POST["user_mail"], FILTER_VALIDATE_EMAIL));
-                            if (!$email) {
-                                echo "L'adresse email est incorecte ";
-                            }
+                                if (!$email) {
+                                    echo "L'adresse email est incorecte ";
+                                }
                             //on va hacher le mdp
                             $password = htmlspecialchars(password_hash($_POST["user_pass"], PASSWORD_ARGON2ID));
-
                             //on enregistre en bdd
                             require "../database/_DBconnexion.php";
-
                             $sql = "INSERT INTO `user`(`last_name`, `first_name`, `user_mail`, `user_pass`, `user_role`, `user_date`) VALUES (:nom, :prenom, :email, '$password', :user_role, CURRENT_TIMESTAMP())";
 
                             $query = $db->prepare($sql);

@@ -5,10 +5,8 @@ if(!isset($_SESSION['user'])){
     exit();
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible"
@@ -33,13 +31,10 @@ if(!isset($_SESSION['user'])){
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
         integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
         crossorigin="anonymous"
-        referrerpolicy="no-referrer" />
-    
+        referrerpolicy="no-referrer" />   
       <!-- Custom CSS file -->
-
       <link rel="stylesheet"
         href="../style.css">    
-
     <!-- Font awesome icons -->
 
     <link rel="stylesheet"
@@ -55,7 +50,6 @@ if(!isset($_SESSION['user'])){
         ?>    
 
 </head>
-
     <!-- start #header -->
     <header id="header">
         <div class="d-flex justify-content-end py-1 color-yellow-bg" style="position:absolute;z-index:10;width:100%;">
@@ -66,12 +60,8 @@ if(!isset($_SESSION['user'])){
                     class="liens px-3 border-right border-left text-dark">Déconnexion</a>
             </div>
         </div>
-
-
         <!-- !start #header -->
-
         <!-- Primary Navigation -->
-
         <nav class="navbar navbar-expand-lg navbar-dark color-second-bg" style ="height:70px;position:fixed;z-index:5;width:100%;top:30px;">
             <div class="container-fluid">
                 <a class="navbar-brand"

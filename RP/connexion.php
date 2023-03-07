@@ -3,7 +3,6 @@
 require "../database/_DBconnexion.php";
 // on déclare la session qui nous permet d'échanger des informations partout sur notre projet qui vérifie si l'utilisateur est bien connecté.
 session_start(); 
-
 // je déclare dans la fonction "isset" la super global ($_POST) qui prend le nom de mon 'input submit' du formulaire je lui demande si elle existe, si oui exécute étape suivante sinon 'else',
 if(isset($_POST['valider'])){
     //dans la fonction ‘empty’ je déclare la super global ($_POST) qui porte le nom des 'inputs' qui servent d'identifiant, je lui demande si les 'imputs' ne sont pas vide fait moi l'étape 3 sinon 'else',
@@ -102,7 +101,6 @@ if(isset($_POST['valider'])){
         <section id="presentation" class="d-flex justify-content-center mt-5">
             <h1 ><a href="../index.php" class="text-dark">Admin <img src="../assets/admin-pic/logo PR Simple.png" alt="logo RN" style="height:70px;width:70px;border-radius:100%;"></a></h1>
         </section>
-
         <section id="main">
             <div class="container-fluid d-flex justify-content-center py-5">
                 <div class="row">
@@ -128,9 +126,5 @@ if(isset($_POST['valider'])){
             </div>
         </section>
     </main>
-
-
-
-    
 </body>
 </html>

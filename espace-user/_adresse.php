@@ -2,8 +2,6 @@
     include "./_header-user.php";
     include "./_list-profil-user.php";
 ?>
-
-
                     <div id="affichage" class="col-10">
                         <!-- <p>Profil de <?= $_SESSION["user"]["nom"]?> <?= $_SESSION["user"]["prenom"] ?></p>
                         <p>Nom <?= $_SESSION["user"]["nom"] ?></p>

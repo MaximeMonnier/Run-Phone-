@@ -20,17 +20,14 @@ include "./header-admin.php";
                                     $prix = htmlspecialchars($_POST['prix']);
                                     $image = htmlspecialchars($_POST['image']);
                                     $date = htmlspecialchars($_POST['date']);
-
                                     $inserProduct = $db->prepare('INSERT INTO product(item_brand,item_name,item_price,item_image,item_register) VALUES(?,?,?,?,?)');
                                     $inserProduct->execute(array($marque,$titre,$prix,$image,$date));
-
                                     die ("Le Produit a bien été ajouter");
                                 }else{
                                     die ("Veuillez Ajouter un titre et une marque");
                                 }
                             }
                         ?>
-
                     <div id="affichage-admin" class="col-10">
                         <div class="col pb-3">
                         <section id="inscription" class="py-5 px-5" style="width: 35%;height:25%;">

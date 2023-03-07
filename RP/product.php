@@ -1,9 +1,5 @@
 <?php
 include "./header-admin.php";
-// if(!isset($_SESSION['mdp'])){
-//     header("Location: connexion.php");
-//     exit();
-// } 
 ?>
 
 <body>
