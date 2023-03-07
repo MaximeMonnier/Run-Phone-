@@ -1,24 +1,52 @@
 <?php
-// étape n°= 1 on déclare la session qui nous permet d'échanger des informations partout sur notre projets et qui vérifie si l'utilisateurs est bien connecter.
-session_start();
-// étape n°= 2 je déclare dans la functions "isset" la super global ($_POST) qui prend le nom de mon 'input submit' de mon formualire je lui demande si elle existe, si oui execute étape 2 sinon 'else',  
+// On déclare la connexion  la base de données
+require "../database/_DBconnexion.php";
+// on déclare la session qui nous permet d'échanger des informations partout sur notre projet qui vérifie si l'utilisateur est bien connecté.
+session_start(); 
+
+// je déclare dans la fonction "isset" la super global ($_POST) qui prend le nom de mon 'input submit' du formulaire je lui demande si elle existe, si oui exécute étape suivante sinon 'else',
 if(isset($_POST['valider'])){
-    // étape n°= 3 dans la fonction empty je déclare la super global ($_POST) qui porte le nom des mes 'inputs' qui servent d'ientifiant, je lui demande si les 'imputs' ne sont pas vide fait moi l'étape 3 sinon 'else',
-    if(!empty($_POST['name']) AND !empty($_POST['mdp'])){
-        // étape n°= 4 j'établie mes variables de connexion,
-        $name_par_defaut = "maxime";
-        $mdp_par_defaut = "maxime1234";
-        // étape n°= 5 je sécurise mes 'champs inputs' contre les faille XSS avec la focntion "htmlspecialchars" qui sert a effacer les balise de script entrer dans mes 'champs inputs' apr des utilisateur malveillant,
-        $name_saisie = htmlspecialchars($_POST['name']);
-        $mdp_saisie = htmlspecialchars($_POST['mdp']);
-        // étape n°= 6 je compare mes les donnéess saisie dans mes 'champs inputs' et les données de mes variable de connexion, je lui demande de comparer les données, si elle sont identique tu accorde laccès a la page 'home.php' de mon espace admin et exécute l'étape n°= 7 sinon refus on renvoie 'else',
-        if($name_par_defaut == $name_saisie AND $mdp_par_defaut == $mdp_saisie){
-            // étape n°= 7 j'accorde l'acces au pages de l'esapce adimis avec la session et redirige l'admin sur la page home.
-            $_SESSION['mdp'] = $mdp_saisie;
-            header("Location: ./home.php");
-        } else{
-            echo"Les informations de connexion ne sont pas correcte";
+    //dans la fonction ‘empty’ je déclare la super global ($_POST) qui porte le nom des 'inputs' qui servent d'identifiant, je lui demande si les 'imputs' ne sont pas vide fait moi l'étape 3 sinon 'else',
+    if(isset($_POST['name'], $_POST["mdp"]) && !empty($_POST['name']) && !empty($_POST["mdp"])
+    ){
+        //on sécurise et vérifie l'email,
+        $name = htmlspecialchars(filter_var($_POST["name"], FILTER_VALIDATE_EMAIL));
+        if(!$name){
+            echo "Le format de l'email est incorrecte";
         }
+        // ici sécurise le mdp
+        $pass = htmlspecialchars($_POST["mdp"]);
+
+        //Creation de la requete
+        $sql = "SELECT * FROM `user` WHERE `user_mail` = :email";
+
+        //preparation de la requete
+        $query = $db->prepare($sql);
+        $query->bindValue(":email", $_POST['name'], PDO::PARAM_STR);
+        // étape n°= 8 execution de la requete
+        $query->execute();
+
+        //on fecth les données pour les comparer
+        $admin = $query->fetch();
+
+       //on stock dans $_SESSION les informations de l'utilisateurs si son identifiant est correct
+        if($admin && password_verify($pass, $admin["user_pass"])){
+         // Vérification de l'identifiant unique de l'utilisateur
+        if($admin['id'] == 70){ 
+        $_SESSION["admin"] = [
+            "nom" => $admin["last_name"],
+            "prenom" => $admin["first_name"],
+            "mail" => $admin["user_mail"]
+        ];
+        //on redirige vers la page de profil
+        header("Location: home.php");
+        } else {
+         echo "Vous n'êtes pas autorisé à accéder à cette page.";
+        }
+        } else {
+        echo "L'utilisateurs et/ou le mot de passe est incorrect";
+        }
+
     }else{
         echo "Veuillez compléter tout les champs";
     }
@@ -78,7 +106,7 @@ if(isset($_POST['valider'])){
         <section id="main">
             <div class="container-fluid d-flex justify-content-center py-5">
                 <div class="row">
-<!-- Section connexion -->
+                    <!-- Section connexion -->
                     <div class="col">
                         <section id="connexion" class="py-5 px-5 color-primary-bg">
                         <h1 class="font-mont color-second my-4">Connexion</h1>
@@ -95,7 +123,7 @@ if(isset($_POST['valider'])){
                             </form>
                         </section>
                     </div>
-            <!-- ! fin Section connexion -->
+                    <!-- ! fin Section connexion -->
                 </div>
             </div>
         </section>

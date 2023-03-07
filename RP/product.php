@@ -22,8 +22,8 @@ include "./header-admin.php";
                             <div class="row">
                 
                         <?php
-                        $recupProduct = $bdd->query('SELECT * FROM product');
-                            while($product = $recupProduct->fetch()){
+                        $recupProduct = $db->query('SELECT * FROM product');
+                            while($product = $recupProduct->fetch()){ 
                                 ?>
                                     <!-- <div class="col-1"> -->
                                         <div class="card" style="width: 28rem;">

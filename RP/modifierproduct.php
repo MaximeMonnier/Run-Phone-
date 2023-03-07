@@ -3,7 +3,7 @@ include "./header-admin.php";
 if(isset($_GET['id']) AND !empty($_GET['id'])){
     $getid = $_GET['id'];
 
-    $recupproduct = $bdd->prepare('SELECT * FROM product WHERE item_id = ?');
+    $recupproduct = $db->prepare('SELECT * FROM product WHERE item_id = ?');
     $recupproduct->execute(array($getid));
     if($recupproduct->rowCount() > 0){
         $productinfo = $recupproduct->fetch();
@@ -20,7 +20,7 @@ if(isset($_GET['id']) AND !empty($_GET['id'])){
             $image_saisie = htmlspecialchars($_POST['image']);
             $date_saisie = htmlspecialchars($_POST['date']);
     
-            $updateproduct = $bdd->prepare('UPDATE product SET item_brand = ? , item_name = ? , item_price = ? , item_image = ? , item_register = ? WHERE item_id = ?');
+            $updateproduct = $db->prepare('UPDATE product SET item_brand = ? , item_name = ? , item_price = ? , item_image = ? , item_register = ? WHERE item_id = ?');
             $updateproduct->execute(array($marque_saisie,$titre_saisie,$prix_saisie,$image_saisie,$date_saisie,$getid));
             header('Location: product.php');
         }

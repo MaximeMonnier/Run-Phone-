@@ -1,10 +1,4 @@
 <?php
-//étape n°= 1 j'empêche l'acces a mes fichiers sans que le super global ($_SESSION) soit déclarer et le redirige avec la page de connexion, 
-  if(!isset($_SESSION['mdp'])){
-    header("Location: connexion.php");
-    exit();
-} 
-// étape n°= 2 avec la fonction 'include' j'inclue le header de mon espace admin ainsi que la connexion a ma base de données
 include "./header-admin.php";
 ?>
 <body>
@@ -27,7 +21,7 @@ include "./header-admin.php";
                                     $image = htmlspecialchars($_POST['image']);
                                     $date = htmlspecialchars($_POST['date']);
 
-                                    $inserProduct = $bdd->prepare('INSERT INTO product(item_brand,item_name,item_price,item_image,item_register) VALUES(?,?,?,?,?)');
+                                    $inserProduct = $db->prepare('INSERT INTO product(item_brand,item_name,item_price,item_image,item_register) VALUES(?,?,?,?,?)');
                                     $inserProduct->execute(array($marque,$titre,$prix,$image,$date));
 
                                     die ("Le Produit a bien été ajouter");
@@ -38,7 +32,7 @@ include "./header-admin.php";
                         ?>
 
                     <div id="affichage-admin" class="col-10">
-                        <div class="col">
+                        <div class="col pb-3">
                         <section id="inscription" class="py-5 px-5" style="width: 35%;height:25%;">
                         <h1 class="font-mont color-second my-4">Ajouter un produits</h1>
                         <form method="post">

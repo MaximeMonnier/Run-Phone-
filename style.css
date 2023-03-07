@@ -189,6 +189,13 @@ a:visited {
   margin-bottom: 20px;
 }
 
+#modifer {
+  border: 3px solid #FF6E31;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  height: 50% !important;
+}
+
 /*  profil-user  */
 #info {
   padding-top: 110px !important;

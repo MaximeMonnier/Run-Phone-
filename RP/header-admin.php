@@ -1,7 +1,7 @@
 <?php
 session_start();
-$bdd = new PDO ('mysql:host=localhost;dbname=shopee;','root','');
-if(!$_SESSION['mdp']){
+require "../database/_DBconnexion.php";
+if(!$_SESSION['admin']){
     header('Location: connexion.php');
 }
 
@@ -47,12 +47,6 @@ if(!$_SESSION['mdp']){
         integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
         crossorigin="anonymous"
         referrerpolicy="no-referrer" />
-
-    
-        <?php
-            //require functions file
-            require '../functions.php';
-        ?>    
 
 </head>
 
