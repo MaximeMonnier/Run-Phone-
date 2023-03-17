@@ -48,7 +48,7 @@ if(isset($_GET['id']) AND !empty($_GET['id'])){
                         <div class="row">
                                 <div class="col-5">
                                     <!-- formulaire de modification -->
-                                    <section id="inscription" class="px-5">
+                                    <section id="inscription" class="px-5" style="height:100%;">
                                     <h1 class="font-mont color-second my-4">Modifier un produits</h1>
                                         <form method="post">
                                             <div class="d-flex flex-column my-2 fw-bolder font-mont color-primary">

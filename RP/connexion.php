@@ -11,31 +11,27 @@ if(isset($_POST['valider'])){
         //on sécurise et vérifie l'email,
         $name = htmlspecialchars(filter_var($_POST["name"], FILTER_VALIDATE_EMAIL));
         if(!$name){
-            echo "Le format de l'email est incorrecte";
+        echo "Le format de l'email est incorrecte";
         }
         // ici sécurise le mdp
         $pass = htmlspecialchars($_POST["mdp"]);
-
         //Creation de la requete
         $sql = "SELECT * FROM `user` WHERE `user_mail` = :email";
-
         //preparation de la requete
         $query = $db->prepare($sql);
         $query->bindValue(":email", $_POST['name'], PDO::PARAM_STR);
         // étape n°= 8 execution de la requete
         $query->execute();
-
         //on fecth les données pour les comparer
         $admin = $query->fetch();
-
        //on stock dans $_SESSION les informations de l'utilisateurs si son identifiant est correct
         if($admin && password_verify($pass, $admin["user_pass"])){
          // Vérification de l'identifiant unique de l'utilisateur
             if($admin['user_role'] == "ROLE_ADMIN"){ 
                 $_SESSION["admin"] = [
-                    "nom" => $admin["last_name"],
-                    "prenom" => $admin["first_name"],
-                    "mail" => $admin["user_mail"]
+                "nom" => $admin["last_name"],
+                "prenom" => $admin["first_name"],
+                "mail" => $admin["user_mail"]
                 ];
                 //on redirige vers la page de profil
                 header("Location: home.php");
@@ -45,7 +41,6 @@ if(isset($_POST['valider'])){
         } else {
             echo "L'utilisateurs et/ou le mot de passe est incorrect";
         }
-
     }else{
         echo "Veuillez compléter tout les champs";
     }

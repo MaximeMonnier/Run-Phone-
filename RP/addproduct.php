@@ -12,15 +12,20 @@ include "./header-admin.php";
                             <a href="blog.php" class="my-3"><p class="pt-3 ps-3 color-primary fs-6 font-robo text-dark">Afficher les article de blogs</p></a>
                         </div>  
                     </div>
+                    <!-- traitements du formulaire -->
                     <?php
+                            // si le formulaire est vide
                             if(isset($_POST['envoie'])){
                                 if(!empty($_POST['marque']) AND !empty($_POST['titre']) AND !empty($_POST['prix']) AND !empty($_POST['image']) AND !empty($_POST['date'])){
+                                    // sécurisation des champs inputs
                                     $marque = htmlspecialchars($_POST['marque']);
                                     $titre = htmlspecialchars($_POST['titre']);
                                     $prix = htmlspecialchars($_POST['prix']);
                                     $image = htmlspecialchars($_POST['image']);
                                     $date = htmlspecialchars($_POST['date']);
+                                    //préparations de la requête
                                     $inserProduct = $db->prepare('INSERT INTO product(item_brand,item_name,item_price,item_image,item_register) VALUES(?,?,?,?,?)');
+                                    //execution de la requête
                                     $inserProduct->execute(array($marque,$titre,$prix,$image,$date));
                                     die ("Le Produit a bien été ajouter");
                                 }else{
@@ -30,7 +35,7 @@ include "./header-admin.php";
                         ?>
                     <div id="affichage-admin" class="col-10">
                         <div class="col pb-3">
-                        <section id="inscription" class="py-5 px-5" style="width: 35%;height:25%;">
+                        <section id="inscription" class="py-5 px-5" style="height: 100%; width:35%">
                         <h1 class="font-mont color-second my-4">Ajouter un produits</h1>
                         <form method="post">
                             <div class="d-flex flex-column my-2 fw-bolder font-mont color-primary">

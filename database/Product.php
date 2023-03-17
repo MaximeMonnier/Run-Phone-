@@ -18,9 +18,8 @@ class Product
         }
         return $resultArray;
     }
-
      // get product using item id
-     public function getProduct($item_id = null, $table= 'product'){
+    public function getProduct($item_id = null, $table= 'product'){
         if (isset($item_id)){
             $result = $this->db->query("SELECT * FROM {$table} WHERE item_id={$item_id}");
             $resultArray = array();

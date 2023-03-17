@@ -13,7 +13,6 @@ class Cart
     }
 
     //insert into cart table
-
     public function insertintoCart($params =null, $table ="cart"){
         if($this->db != null){
             if($params != null){
@@ -87,7 +86,7 @@ class Cart
     }
 
       // Save for later
-      public function saveForLater($item_id = null, $saveTable = "wishlist", $fromTable = "cart"){
+    public function saveForLater($item_id = null, $saveTable = "wishlist", $fromTable = "cart"){
         if ($item_id != null){
             $query = "INSERT INTO {$saveTable} SELECT * FROM {$fromTable} WHERE item_id=:item_id;";
             $query .= "DELETE FROM {$fromTable} WHERE item_id=:item_id;";
@@ -103,6 +102,4 @@ class Cart
             return $result;
         }
     }
-
-
 }
