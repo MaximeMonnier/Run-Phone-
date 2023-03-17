@@ -19,7 +19,7 @@ if(isset($_FILES["image"]) && $_FILES["image"]["error"] === 0){
     $filetype = $_FILES["image"]["type"];
     $filesize = $_FILES["image"]["size"];
 
-    $extension = pathinfo($filename, PATHINFO_EXTENSION);
+    $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
     //On vérifie l'absence de l'exrension dans les clés de $allowed ou l'absence de type MIME dans les valuers
     if(!array_key_exists($extension, $allowed) || !in_array($filetype, $allowed)){
         // Ici soit l'extension soit le type est incorrect
@@ -30,6 +30,16 @@ if(isset($_FILES["image"]) && $_FILES["image"]["error"] === 0){
     // On limite a 1Mo 
     if($filesize > 1024*1024){
         echo("Fichier trop voluminuex");
+    }
+
+    // On génère un nom unique
+    $newname = md5(uniqid());
+    // on génère le chemin complet
+    $newfilename = __DIR__."./uploads/$newname.$extension";
+    // var_dump($_FILES);
+
+    if(!move_uploaded_file($_FILES["image"]["tmp_name"], $newfilename)){
+        echo ("Le téléchargement à échouée");
     }
 }
 
