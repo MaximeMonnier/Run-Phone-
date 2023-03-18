@@ -35,12 +35,18 @@ if(isset($_FILES["image"]) && $_FILES["image"]["error"] === 0){
     // On génère un nom unique
     $newname = md5(uniqid());
     // on génère le chemin complet
-    $newfilename = __DIR__."./uploads/$newname.$extension";
+    $newfilename = dirname(__DIR__) . DIRECTORY_SEPARATOR . "uploads/$newname.$extension";
     // var_dump($_FILES);
+    // var_dump( dirname(__DIR__));
+    // exit();
 
+    //On déplace le fichier de tmp à uplaods en le renommant 
     if(!move_uploaded_file($_FILES["image"]["tmp_name"], $newfilename)){
         echo ("Le téléchargement à échouée");
     }
+
+    //On interdit l'exécution du fichier
+    chmod($newfilename, 0644);
 }
 
 
