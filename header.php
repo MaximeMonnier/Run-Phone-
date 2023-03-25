@@ -47,6 +47,8 @@ referrerpolicy="no-referrer" />
 <?php
 //require functions file
 require 'functions.php';
+// require autoload
+require './vendor/autoload.php';
 ?>
 
 </head>
