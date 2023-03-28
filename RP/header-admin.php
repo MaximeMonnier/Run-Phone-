@@ -45,7 +45,7 @@ if(!$_SESSION['admin']){
     <!-- start #header -->
     <header id="header">
         <!-- Primary Navigation -->
-           <!--  navigation -->
+        <!--  navigation -->
             <section id="head">
                 <nav class="navbar color-primary-bg border-bottom border-dark" style="position:absolute;z-index:10;width:100%;">
                         <div class="container-fluid">

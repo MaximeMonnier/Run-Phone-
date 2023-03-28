@@ -9,7 +9,7 @@ include "./header-admin.php";
                 <div class="row">
                     <div class="col-2 color-primary-bg" id="info">
                         <div id="list" class="pt-5">
-                            <a href="addproduct.php" class="my-3"><p class="pt-3 ps-3 color-primary fs-6 font-robo text-dark">Ajouter produits</p></a>
+                            <a href="addproduct.php" class="my-3"><p class="pt-3 ps-3 color-primary fs-6 font-robo text-dark">Ajouter un produits</p></a>
                             <a href="home.php" class="my-3"><p class="pt-3 ps-3 color-primary fs-6 font-robo text-dark">Retour a la page home</p></a>
                         </div>  
                     </div>

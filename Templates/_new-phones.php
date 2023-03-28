@@ -19,7 +19,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST"){
                     ?>
                     <div class="item py-2 color-yellow-bg">
                         <div class="product font-mont">
-                            <a href="<?php printf('%s?item_id=%s','product.php', $item['item_id']); ?>"><img src="<?php echo $item['item_image'] ?? "./assets/products/1.png"  ?>"
+                            <a href="<?php printf('%s?item_id=%s','product.php', $item['item_id']); ?>"><img src="<?php echo $item['item_image_bdd'] ?? "./assets/products/1.png"  ?>"
                                 alt="product1"
                                 class="img-fluid"></a>
                             <div class="text-center">

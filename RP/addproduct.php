@@ -1,5 +1,74 @@
 <?php
 include "./header-admin.php";
+
+if(isset($_POST['envoie'])){
+    if(!empty($_POST['marque']) AND !empty($_POST['titre']) AND !empty($_POST['prix']) AND !empty($_POST['date'])){
+
+        // sécurisation des champs inputs
+        $marque = htmlspecialchars($_POST['marque']);
+        $titre = htmlspecialchars($_POST['titre']);
+        $prix = htmlspecialchars($_POST['prix']);
+        $date = htmlspecialchars($_POST['date']);
+
+        if(isset($_FILES["image"]) && $_FILES["image"]["error"] === 0){
+            // On a reçu l'image
+            // On porcède aux vérification
+            // On vérifie toujours l'extension et le type MIME
+            $allowed = [
+                "jpg" => "image/jpg",
+                "jpeg" => "image/jpeg",
+                "png" => "image/png"
+            ];
+            
+            $filename = $_FILES["image"]["name"];
+            $filetype = $_FILES["image"]["type"];
+            $filesize = $_FILES["image"]["size"];
+            $files_tmp_name = $_FILES['image']["tmp_name"];
+
+            $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+            //On vérifie l'absence de l'exrension dans les clés de $allowed ou l'absence de type MIME dans les valeurs
+            if(!array_key_exists($extension, $allowed) || !in_array($filetype, $allowed)){
+                // Ici soit l'extension soit le type est incorrect
+                echo("Erreur: Format de ficheir incorrect");
+            }
+            // Ici le type est correcte
+            // On limite a 1Mo 
+            if($filesize > 1024 * 1024){
+                echo("Fichier trop voluminuex");
+            }
+            // On génère un nom unique
+            $newname = md5(uniqid());
+            // on génère le chemin complet
+            $newfilename = dirname(__DIR__) . DIRECTORY_SEPARATOR . "uploads/$newname.$extension";
+            $newLinkname = "../uploads/$newname.$extension";
+            $newlinkname = "./uploads/$newname.$extension";
+            //On déplace le fichier de tmp à uploads en le renommant 
+            if(!move_uploaded_file($_FILES["image"]["tmp_name"], $newfilename)){
+                echo ("Le téléchargement à échouée");
+            }
+            // On envoie en bdd
+            $sql = "INSERT INTO `product`(`item_brand`, `item_name`, `item_price`, `item_image`, `item_image_bdd`, `item_register`) VALUES (:item_brand, :item_name, :item_price, :item_image, :item_image_bdd, :item_register)";
+
+            $query = $db->prepare($sql);
+            $query->bindvalue(":item_brand", $marque, PDO::PARAM_STR);
+            $query->bindvalue(":item_name", $titre, PDO::PARAM_STR);
+            $query->bindvalue(":item_price", $prix, PDO::PARAM_STR);
+            $query->bindvalue(":item_image", $newLinkname, PDO::PARAM_STR);
+            $query->bindvalue(":item_image_bdd", $newlinkname, PDO::PARAM_STR);
+            $query->bindvalue(":item_register", $date, PDO::PARAM_STR);
+            $query->execute();
+
+            // var_dump($newLinkname);
+            // exit();
+
+            //On interdit l'exécution du fichier
+            chmod($newfilename, 0644);
+            echo("le produits a bien été ajouter");
+        }
+    }else{
+        echo "Les calcul ne sont pas bon kévin";
+    }
+}
 ?>
 <body>
     <main>
@@ -12,32 +81,12 @@ include "./header-admin.php";
                             <a href="blog.php" class="my-3"><p class="pt-3 ps-3 color-primary fs-6 font-robo text-dark">Afficher les article de blogs</p></a>
                         </div>  
                     </div>
-                    <!-- traitements du formulaire -->
-                    <?php
-                            // si le formulaire est vide
-                            if(isset($_POST['envoie'])){
-                                if(!empty($_POST['marque']) AND !empty($_POST['titre']) AND !empty($_POST['prix']) AND !empty($_POST['image']) AND !empty($_POST['date'])){
-                                    // sécurisation des champs inputs
-                                    $marque = htmlspecialchars($_POST['marque']);
-                                    $titre = htmlspecialchars($_POST['titre']);
-                                    $prix = htmlspecialchars($_POST['prix']);
-                                    $image = htmlspecialchars($_POST['image']);
-                                    $date = htmlspecialchars($_POST['date']);
-                                    //préparations de la requête
-                                    $inserProduct = $db->prepare('INSERT INTO product(item_brand,item_name,item_price,item_image,item_register) VALUES(?,?,?,?,?)');
-                                    //execution de la requête
-                                    $inserProduct->execute(array($marque,$titre,$prix,$image,$date));
-                                    die ("Le Produit a bien été ajouter");
-                                }else{
-                                    die ("Veuillez Ajouter un titre et une marque");
-                                }
-                            }
-                        ?>
+                    
                     <div id="affichage-admin" class="col-10">
                         <div class="col pb-3">
                         <section id="inscription" class="py-5 px-5" style="height: 100%; width:35%">
                         <h1 class="font-mont color-second my-4">Ajouter un produits</h1>
-                        <form method="post">
+                        <form method="post" enctype="multipart/form-data">
                             <div class="d-flex flex-column my-2 fw-bolder font-mont color-primary">
                                 <label for="marque" class="lab">Marque</label>
                                 <input type="text" name="marque" id="marque" class="inp">
@@ -52,7 +101,7 @@ include "./header-admin.php";
                             </div>
                             <div class="d-flex flex-column my-2 fw-bolder font-mont color-primary">
                                 <label for="image"class="lab">Image</label>
-                                <input type="text" name="image" id="image"class="inp">
+                                <input type="file" name="image" id="image"class="inp">
                             </div>
                             <div class="d-flex flex-column my-2 fw-bolder font-mont color-primary">
                                 <label for="date"class="lab">Date</label>

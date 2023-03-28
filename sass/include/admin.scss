@@ -31,3 +31,51 @@
         background-color: white; 
     }
 }
+
+// section upload admin
+.content-upload{
+    width: 70%;
+    height: 150px;
+    border-radius: 10px;
+    background-color: wheat;
+
+    box-shadow: 0 0 7px rgba(18, 18, 18, 0.5);
+    transition: box-shadow 0.3s ease-out;
+}
+
+.content-upload:hover {
+    box-shadow: 0 0 13px rgba(18, 18, 18, 0.8);
+}
+.container-img_upld{
+    margin-bottom: 20px!important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 300px !important;
+    width: 250px !important;
+    border: 2px black solid;
+    background: white;
+    border-radius: 10px;
+    transition: height 0.3s ease-out;
+    transition: width 0.3s ease-out;
+}
+
+.image-upload{
+    margin-top: 5px;
+    height: 75% !important;
+    width: 90% !important;
+    background: green !important;
+}
+
+.container-img_upld:hover{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 303px !important;
+    width: 253px !important;
+    border: 2px black solid;
+    background: white;
+    border-radius: 10px;
+    
+}

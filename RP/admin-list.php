@@ -7,7 +7,7 @@
                         <div id="list" class="pt-5">
                             <a href="product.php" class="my-3"><p class="pt-3 ps-3 color-primary fs-6 font-robo text-dark">Afficher les produits</p></a>
                             <a href="blog.php" class="my-3"><p class="pt-3 ps-3 color-primary fs-6 font-robo text-dark">Afficher les article de blogs</p></a>
-                            <a href="upload.php" class="my-3"><p class="pt-3 ps-3 color-primary fs-6 font-robo text-dark">Télécharger un fichier</p></a>
+                            <a href="upload.php" class="my-3"><p class="pt-3 ps-3 color-primary fs-6 font-robo text-dark">Télécharger un fichier/images</p></a>
                             <a href="../index.php" class="my-3"><p class="pt-3 ps-3 color-primary fs-6 font-robo text-dark">Retour a la boutique</p></a>
                         </div>  
                     </div>
