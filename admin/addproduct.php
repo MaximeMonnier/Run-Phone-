@@ -19,11 +19,14 @@ if(isset($_POST['envoie'])){
                 "jpeg" => "image/jpeg",
                 "png" => "image/png"
             ];
+
+            // var_dump($_FILES);
+            // exit();
             
             $filename = $_FILES["image"]["name"];
             $filetype = $_FILES["image"]["type"];
             $filesize = $_FILES["image"]["size"];
-            $files_tmp_name = $_FILES['image']["tmp_name"];
+            $filepath = $_FILES['image']['full_path'];
 
             $extension = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
             //On vérifie l'absence de l'exrension dans les clés de $allowed ou l'absence de type MIME dans les valeurs
@@ -40,12 +43,66 @@ if(isset($_POST['envoie'])){
             $newname = md5(uniqid());
             // on génère le chemin complet
             $newfilename = dirname(__DIR__) . DIRECTORY_SEPARATOR . "uploads/$newname.$extension";
-            $newLinkname = "../uploads/$newname.$extension";
-            $newlinkname = "./uploads/$newname.$extension";
+            $newLinkname = "../uploads-toto/$filepath.$extension";
+            $newlinkname = "./uploads-toto/$filepath.$extension";
             //On déplace le fichier de tmp à uploads en le renommant 
             if(!move_uploaded_file($_FILES["image"]["tmp_name"], $newfilename)){
                 echo ("Le téléchargement à échouée");
             }
+            // On redimentionne l'image
+            // On récupère les infos de l'image 
+            $info = getimagesize($newfilename);
+            // var_dump($newfilename);
+            // var_dump($_FILES);
+            // var_dump($info);
+            // exit();
+            $largeur = 200;
+            $hauteur = 200;
+            // On crée une nouvelle images vierges en mémoire
+            $nouvelleImage = imagecreatetruecolor($largeur, $hauteur);
+            switch($info['mime']){
+                case "image/png":
+                    // On ouvre l'image png 
+                    $imageSource = imagecreatefrompng($newfilename);
+                    break;
+                    // on ouvre l'image jpeg
+                case "image/jpeg":
+                    $imageSource = imagecreatefromjpeg($newfilename);
+                    break;
+                case "image/jpg":
+                    // On ouvre l'image jpg 
+                    $imageSource = imagecreatefrompng($newfilename);
+                    break;
+                default:
+                    die("format d'image incorrect");
+            }
+            // On copie toute l'image source dans l'image destination en la réduisant
+            imagecopyresampled(
+                $nouvelleImage, // image de destinations
+                $imageSource, // Image de départ
+                0, // positions en x du coin supérieur gauche dans l'image de destinations
+                0, // positions en y du coin supérieur gauche dans l'image de destinations
+                0, // positions en x du coin supérieur gauche dans l'image source
+                0, // positions en y du coin supérieur gauche dans l'image source
+                $largeur, // largeur dans l'image de destinantions
+                $hauteur, // hauteur dans l'image de destinantions
+                $largeur, // largeur dans l'image source
+                $hauteur // hauteur dans l'image source
+            ); 
+            // On enregsitre la nouvelle image sur le serveur
+            switch($info["mime"]){
+                case "image/png":
+                    // On enregistre l'image
+                    imagepng($nouvelleImage, dirname(__DIR__) . DIRECTORY_SEPARATOR . "uploads/toto-" . $filepath);
+                    break;
+                case "image/jpeg":
+                    // On enregistre l'image
+                    imagejpeg($nouvelleImage, dirname(__DIR__) . DIRECTORY_SEPARATOR . "uploads/toto-" . $filepath);
+                    break;
+            }
+            // On détruit les images dans la mémoire 
+            imagedestroy($imageSource);
+            imagedestroy($nouvelleImage);
             // On envoie en bdd
             $sql = "INSERT INTO `product`(`item_brand`, `item_name`, `item_price`, `item_image`, `item_image_bdd`, `item_register`) VALUES (:item_brand, :item_name, :item_price, :item_image, :item_image_bdd, :item_register)";
 
