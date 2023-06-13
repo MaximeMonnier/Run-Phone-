@@ -11,8 +11,11 @@ Le site est accessible à cette adresse #####
 ## Comment l'utiliser
 
 Installer XAMPP
+
 Cloner le repos https://github.com/MaximeMonnier/Run-Phone-.git dans le dossier htdocs de XAMPP
+
 Démarrer le serveur apache et MySql de XAMPP
+
 Pour acceder à l'espace admin remplacer index.php par admin http://localhost/Run-phone/index.php
 
 ## Comment sa marche ?
